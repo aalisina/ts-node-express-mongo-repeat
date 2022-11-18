@@ -10,7 +10,7 @@ export async function createUserSessionHandler(req: Request, res: Response) {
   }
 
   // Create a session
-  const session = createSession(user._id, req.get("user-agent") || "");
+  const session = await createSession(user._id, req.get("user-agent") || "");
   // Create an access token
   // Create a refresh token
   // Return access and refresh token
