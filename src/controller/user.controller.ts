@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { omit } from "lodash";
 import { CreateUserInput } from "../schemas/user.schema";
 import { createUser } from "../services/user.service";
 import logger from "../utils/logger";
@@ -9,7 +10,7 @@ export async function createUserHandler(
 ) {
   try {
     const user = await createUser(req.body);
-    res.status(201).send(user);
+    res.status(201).send(omit(user.toJSON(), "password"));
   } catch (error: any) {
     logger.error(error);
     // 409 conflict, user with the email already registered
