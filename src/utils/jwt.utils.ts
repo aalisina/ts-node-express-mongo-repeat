@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import config from "config";
+import logger from "../utils/logger";
 
 const privateKey = config.get<string>("privateKey");
 const publicKey = config.get<string>("publicKey");
@@ -8,10 +9,14 @@ export function signJwt(
   object: Object, // jwt payload
   options?: jwt.SignOptions | undefined // optional param of options
 ) {
-  return jwt.sign(object, privateKey, {
-    ...(options && options), // check if options is defined before we spread it
-    algorithm: "RS256", // allow usage of public and private keys
-  });
+  try {
+    return jwt.sign(object, privateKey, {
+      ...(options && options), // check if options is defined before we spread it
+      algorithm: "RS256", // allow usage of public and private keys
+    });
+  } catch (err) {
+    logger.error(err);
+  }
 }
 
 export function verifyJwt(token: string) {
