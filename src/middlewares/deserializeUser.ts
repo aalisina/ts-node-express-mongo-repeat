@@ -22,4 +22,6 @@ export const deserializeUser = (
     res.locals.user = decoded;
     return next();
   }
+  return next();
 };
+
