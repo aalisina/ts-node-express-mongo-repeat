@@ -4,4 +4,4 @@ yarn add @types/body-parser @types/config @types/cors @types/express @types/node
 
 https://youtu.be/BWUi6BS9T5Y
 
-Left off 1:14:15
+Left off 1:43:30
