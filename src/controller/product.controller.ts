@@ -45,7 +45,7 @@ export async function updateProductHandler(
   if (!product) {
     return res.sendStatus(404);
   }
-  if (product.user !== userId) {
+  if (String(product.user) !== userId) {
     return res.sendStatus(403);
   }
   const updatedProduct = await findAndUpdateProduct({ productId }, update, {
@@ -64,7 +64,7 @@ export async function deleteProductHandler(
   if (!product) {
     return res.sendStatus(404);
   }
-  if (product.user !== userId) {
+  if (String(product.user) !== userId) {
     return res.sendStatus(403);
   }
   await deleteProduct({ productId });
