@@ -43,7 +43,7 @@ function routes(app: Express) {
   );
 
   app.put(
-    "/api/products",
+    "/api/products/:productId",
     [requireUser, validateResource(updateProductSchema)],
     updateProductHandler
   );
