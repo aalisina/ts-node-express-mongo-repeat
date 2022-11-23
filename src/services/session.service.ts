@@ -25,7 +25,7 @@ export async function updateSession(
 export async function reIssueAccessToken({
   refreshToken,
 }: {
-  refreshToken: string;
+  refreshToken: any;
 }) {
   const { decoded } = verifyJwt(refreshToken);
   if (!decoded || get(decoded, "session")) return false;
