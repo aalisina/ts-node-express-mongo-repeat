@@ -35,13 +35,13 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     price: {
-        type: Number,
-        required: true,
+      type: Number,
+      required: true,
     },
     image: {
-        type: String,
-        required: true,
-    }.
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
