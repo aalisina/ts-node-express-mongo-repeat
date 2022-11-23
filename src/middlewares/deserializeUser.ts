@@ -19,18 +19,18 @@ export const deserializeUser = async (
   }
 
   const { decoded, expired } = verifyJwt(accessToken);
-  if (decoded && !expired) {
-    // only if jwt is valid
-    res.locals.user = decoded;
-    return next();
-  }
   if (expired && refreshToken) {
-    const newAccessToken = await reIssueAccessToken(refreshToken.toString());
+    const newAccessToken = await reIssueAccessToken({refreshToken});
     if (newAccessToken) {
       res.setHeader("x-access-token", newAccessToken);
     }
     const result = verifyJwt(newAccessToken);
     res.locals.user = result.decoded;
+    return next();
+  }
+  if (decoded) {
+    // only if jwt is valid
+    res.locals.user = decoded;
     return next();
   }
   next();
