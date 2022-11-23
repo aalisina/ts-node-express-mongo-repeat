@@ -28,7 +28,7 @@ export async function reIssueAccessToken({
   refreshToken: any;
 }) {
   const { decoded } = verifyJwt(refreshToken);
-  if (!decoded || get(decoded, "session")) return false;
+  if (!decoded || !get(decoded, "session")) return false;
 
   const session = await SessionModel.findById(get(decoded, "session"));
 
