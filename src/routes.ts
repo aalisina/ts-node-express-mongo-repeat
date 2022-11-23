@@ -55,7 +55,7 @@ function routes(app: Express) {
   );
 
   app.delete(
-    "/api/products",
+    "/api/products/:productId",
     [requireUser, validateResource(deleteProductSchema)],
     deleteProductHandler
   );
